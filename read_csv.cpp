@@ -7,6 +7,7 @@
 using namespace std; 
 
 vector<vector<float>> df; 
+string path = "file.csv";
 
 void print_df(){
     for(int i = 0; i < df.size(); i++){
@@ -25,7 +26,7 @@ void print_df(){
 int num_vars(){
   fstream file; 
   int j; 
-  file.open("file.csv",ios::in);
+  file.open(path,ios::in);
   if(file.is_open()){
     string line; 
     while(getline(file,line)){ 
@@ -42,18 +43,17 @@ int num_vars(){
   return j;
 }
 
-
 int main(){
   fstream file; 
-  file.open("file.csv",ios::in);
+  file.open(path,ios::in);
   if(file.is_open()){
     string line; 
     int length = 0; 
     while(getline(file,line)){
       vector<float> ls = {}; 
       length ++; 
+      //cout << line << endl; 
       string tmp = ""; 
-      int j = 0; 
       for(int i = 0; i < line.length(); i++){
         if(line[i] != ','){
           tmp += line[i];
@@ -65,7 +65,6 @@ int main(){
           }
         }
         else{
-          j ++;
           try{
             ls.push_back(stof(tmp));
             tmp = "";
@@ -81,6 +80,6 @@ int main(){
   else{
     cout << "An error has occurred!"; 
   }
-  //print_df();   
+  print_df();   
   return 0; 
 }
