@@ -52,7 +52,6 @@ int main(){
     while(getline(file,line)){
       vector<float> ls = {}; 
       length ++; 
-      //cout << line << endl; 
       string tmp = ""; 
       int j = 0; 
       for(int i = 0; i < line.length(); i++){
