@@ -1,15 +1,15 @@
 #include <typeinfo>
 #include <iostream> 
+#include <cstdlib>
 #include <fstream> 
-#include <vector> 
-#include <variant> 
+#include <time.h>
+#include <vector>  
 #include <string> 
 using namespace std; 
 
-vector<vector<float>> df; 
 string path = "file.csv";
 
-void print_df(){
+void print_df(vector<vector<float>> df){
     for(int i = 0; i < df.size(); i++){
     for(int j = 0; j < df[i].size(); j++){
       if(j < df[i].size() - 1){
@@ -43,7 +43,8 @@ int num_vars(){
   return j;
 }
 
-int main(){
+vector<vector<float>> read_csv(string path){
+  vector<vector<float>> df;
   fstream file; 
   file.open(path,ios::in);
   if(file.is_open()){
@@ -51,8 +52,7 @@ int main(){
     int length = 0; 
     while(getline(file,line)){
       vector<float> ls = {}; 
-      length ++; 
-      //cout << line << endl; 
+      length ++;  
       string tmp = ""; 
       for(int i = 0; i < line.length(); i++){
         if(line[i] != ','){
@@ -80,6 +80,13 @@ int main(){
   else{
     cout << "An error has occurred!"; 
   }
-  print_df();   
+  return df;
+}
+
+int main(){
+  vector<vector<float>> df; 
+  df = read_csv(path);
+  print_df(df);   
   return 0; 
 }
+
