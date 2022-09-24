@@ -88,7 +88,7 @@ int main(){
   vector<vector<float>> X_test = remove_col(test,test[0].size()-1);
   vector<float> y_train = get_col(train,train[0].size()-1);
   vector<float> y_test = get_col(test,test[0].size()-1);
-  LinearRegression lr = LinearRegression(10000, 0.0000001);
+  LinearRegression lr = LinearRegression(10000, 0.0001);
   lr.fit(X_train,y_train);
   lr.predict(X_test,y_test);
   return 0; 
